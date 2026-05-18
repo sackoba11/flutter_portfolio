@@ -85,6 +85,13 @@ class HomeScreen extends StatelessWidget {
                                   '/about',
                                 ),
                               );
+                            } else if (section == 'Contact') {
+                              Future.microtask(
+                                () => Navigator.pushReplacementNamed(
+                                  context,
+                                  '/contact',
+                                ),
+                              );
                             }
                           },
                         ),

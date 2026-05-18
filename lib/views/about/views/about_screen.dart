@@ -98,7 +98,14 @@ class AboutScreen extends StatelessWidget {
                                     '/stack',
                                   ),
                                 );
-                              }
+                              }else if (section == 'Contact') {
+                              Future.microtask(
+                                () => Navigator.pushReplacementNamed(
+                                  context,
+                                  '/contact',
+                                ),
+                              );
+                            }
                             },
                           ),
                           const SizedBox(height: 28),

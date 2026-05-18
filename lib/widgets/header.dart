@@ -61,16 +61,19 @@ class Header extends StatelessWidget {
                 ),
                 NavbarItem(
                   text: 'Stack',
+                  isActive: activeSection == 'Stack',
                   textColor: AppColors.onSurfaceVariant,
                   onTap: () => onSectionTap?.call('Stack'),
                 ),
                 NavbarItem(
                   text: 'About',
+                  isActive: activeSection == 'About',
                   textColor: AppColors.onSurfaceVariant,
                   onTap: () => onSectionTap?.call('About'),
                 ),
                 NavbarItem(
                   text: 'Contact',
+                  isActive: activeSection == 'Contact',
                   textColor: AppColors.onSurfaceVariant,
                   onTap: () => onSectionTap?.call('Contact'),
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/views/contact/views/contact_screen.dart';
 
 import 'views/about/views/about_screen.dart';
 import 'views/home/views/home_screen.dart';
@@ -19,6 +20,7 @@ class Root extends StatelessWidget {
         '/projects': (context) => const ProjectsScreen(),
         '/stack': (context) => const StackScreen(),
         '/about': (context) => const AboutScreen(),
+        '/contact': (context) => const ContactScreen(),
       },
     );
   }
