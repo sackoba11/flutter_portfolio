@@ -1,39 +1,92 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
 
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../core/theme/app_colors.dart';
 import 'ghost_button.dart';
 import 'navbar_item.dart';
-import 'primary_button.dart';
 
 class Header extends StatelessWidget {
-  const Header({super.key, required this.isMobile, required this.textColor});
+  const Header({
+    super.key,
+    required this.isMobile,
+    required this.activeSection,
+    this.onSectionTap,
+  });
 
   final bool isMobile;
-  final Color textColor;
+  final String activeSection;
+  final void Function(String section)? onSectionTap;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          'Sacko Allou-Badra',
-          style: TextStyle(
-            color: textColor,
-            fontWeight: FontWeight.w800,
-            fontSize: isMobile ? 18 : 22,
+    return ClipRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
+        child: Container(
+          height: 80,
+          padding: EdgeInsets.symmetric(horizontal: isMobile ? 12 : 20),
+          decoration: BoxDecoration(
+            color: AppColors.surface.withOpacity(0.58),
+            border: Border(
+              bottom: BorderSide(
+                color: AppColors.outlineVariant.withOpacity(0.12),
+              ),
+            ),
+          ),
+          child: Row(
+            children: [
+              Text(
+                'DevArchitect',
+                style: GoogleFonts.montserrat(
+                  color: AppColors.onSurface,
+                  fontWeight: FontWeight.w800,
+                  fontSize: isMobile ? 18 : 22,
+                ),
+              ),
+              const Spacer(),
+              if (!isMobile) ...[
+                NavbarItem(
+                  text: 'Home',
+                  textColor: AppColors.onSurfaceVariant,
+                  isActive: activeSection == 'Home',
+                  onTap: () => onSectionTap?.call('Home'),
+                ),
+                NavbarItem(
+                  text: 'Projects',
+                  textColor: AppColors.onSurfaceVariant,
+                  isActive: activeSection == 'Projects',
+                  onTap: () => onSectionTap?.call('Projects'),
+                ),
+                NavbarItem(
+                  text: 'Stack',
+                  textColor: AppColors.onSurfaceVariant,
+                  onTap: () => onSectionTap?.call('Stack'),
+                ),
+                NavbarItem(
+                  text: 'About',
+                  textColor: AppColors.onSurfaceVariant,
+                  onTap: () => onSectionTap?.call('About'),
+                ),
+                NavbarItem(
+                  text: 'Contact',
+                  textColor: AppColors.onSurfaceVariant,
+                  onTap: () => onSectionTap?.call('Contact'),
+                ),
+                const SizedBox(width: 18),
+                GhostButton(label: 'Hire Me', isMobile: false),
+              ] else ...[
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.menu),
+                  color: AppColors.onSurface,
+                ),
+              ],
+            ],
           ),
         ),
-        const Spacer(),
-        if (!isMobile) ...[
-          NavbarItem(text: 'Courses', textColor: textColor),
-          NavbarItem(text: 'Pricing', textColor: textColor),
-          NavbarItem(text: 'Blog', textColor: textColor),
-          NavbarItem(text: 'About Me', textColor: textColor),
-          const SizedBox(width: 18),
-          GhostButton(label: 'Log in', isMobile: isMobile),
-          const SizedBox(width: 10),
-        ],
-        PrimaryButton(label: 'Sign up', isMobile: isMobile),
-      ],
+      ),
     );
   }
 }

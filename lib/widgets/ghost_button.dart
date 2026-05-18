@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../core/theme/app_colors.dart';
+
 class GhostButton extends StatelessWidget {
   const GhostButton({super.key, required this.label, required this.isMobile});
 
@@ -8,23 +10,22 @@ class GhostButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final darkMode =
-        Theme.of(context).scaffoldBackgroundColor.computeLuminance() < 0.2;
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: isMobile ? 14 : 18,
-        vertical: 8,
+        horizontal: isMobile ? 18 : 22,
+        vertical: isMobile ? 10 : 14,
       ),
       decoration: BoxDecoration(
+        color: AppColors.surfaceContainerLow.withOpacity(0.72),
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: darkMode ? Colors.white30 : Colors.black26),
+        border: Border.all(color: AppColors.outlineVariant.withOpacity(0.35)),
       ),
       child: Text(
         label,
         style: TextStyle(
-          color: darkMode ? Colors.white : const Color(0xFF1B1A25),
+          color: AppColors.onSurfaceVariant,
           fontWeight: FontWeight.w600,
-          fontSize: isMobile ? 12 : 13,
+          fontSize: isMobile ? 14 : 15,
         ),
       ),
     );

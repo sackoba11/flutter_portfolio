@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../views/home/views/home_screen.dart';
+import '../core/theme/app_colors.dart';
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({super.key, required this.label, required this.isMobile});
@@ -12,19 +12,27 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: isMobile ? 14 : 18,
-        vertical: 8,
+        horizontal: isMobile ? 18 : 22,
+        vertical: isMobile ? 10 : 14,
       ),
       decoration: BoxDecoration(
-        color: HomeScreen.kPurple,
+        color: AppColors.primary,
         borderRadius: BorderRadius.circular(999),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.primary.withOpacity(0.18),
+            blurRadius: 18,
+            offset: const Offset(0, 8),
+          ),
+        ],
       ),
       child: Text(
         label,
         style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.w600,
-          fontSize: isMobile ? 12 : 13,
+          color: AppColors.onPrimary,
+          fontWeight: FontWeight.w700,
+          fontSize: isMobile ? 14 : 15,
+          letterSpacing: 0.2,
         ),
       ),
     );

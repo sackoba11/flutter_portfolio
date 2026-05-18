@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../widgets/article_grid.dart';
-import '../../../widgets/course_grid.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../../widgets/footer.dart';
 import '../../../widgets/header.dart';
 import '../../../widgets/hero_section.dart';
-import '../../../widgets/pricing_grid.dart';
-import '../../../widgets/section_title.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,79 +18,97 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final isMobile = width < 900;
-    final bg = isMobile ? kDarkBg : Colors.white;
-    final text = isMobile ? Colors.white : const Color(0xFF151321);
-    final muted = isMobile ? kTextMutedDark : kTextMutedLight;
 
     return Scaffold(
-      backgroundColor: bg,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 1160),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: isMobile ? 16 : 30,
-                  vertical: isMobile ? 18 : 24,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Header(isMobile: isMobile, textColor: text),
-                    const SizedBox(height: 26),
-                    HeroSection(
-                      isMobile: isMobile,
-                      textColor: text,
-                      mutedTextColor: muted,
+      backgroundColor: AppColors.background,
+      body: Stack(
+        children: [
+          Positioned(
+            top: -120,
+            right: -100,
+            child: Container(
+              width: 520,
+              height: 520,
+              decoration: BoxDecoration(
+                color: AppColors.primary.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(260),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: -100,
+            left: -80,
+            child: Container(
+              width: 380,
+              height: 380,
+              decoration: BoxDecoration(
+                color: AppColors.inversePrimary.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(190),
+              ),
+            ),
+          ),
+          SingleChildScrollView(
+            child: SafeArea(
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 1200),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: isMobile ? 16 : 28,
+                      vertical: isMobile ? 18 : 24,
                     ),
-                    const SizedBox(height: 42),
-                    SectionTitle(
-                      title: 'Courses',
-                      actionLabel: 'View all',
-                      textColor: text,
-                      actionColor: muted,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Header(
+                          isMobile: isMobile,
+                          activeSection: 'Home',
+                          onSectionTap: (section) {
+                            if (section == 'Projects') {
+                              Future.microtask(
+                                () => Navigator.pushReplacementNamed(
+                                  context,
+                                  '/projects',
+                                ),
+                              );
+                            } else if (section == 'Stack') {
+                              Future.microtask(
+                                () => Navigator.pushReplacementNamed(
+                                  context,
+                                  '/stack',
+                                ),
+                              );
+                            } else if (section == 'About') {
+                              Future.microtask(
+                                () => Navigator.pushReplacementNamed(
+                                  context,
+                                  '/about',
+                                ),
+                              );
+                            }
+                          },
+                        ),
+                        const SizedBox(height: 28),
+                        HeroSection(
+                          isMobile: isMobile,
+                          textColor: AppColors.onSurface,
+                          mutedTextColor: AppColors.onSurfaceVariant,
+                        ),
+                        const SizedBox(height: 40),
+                        Footer(
+                          isMobile: isMobile,
+                          textColor: AppColors.onSurface,
+                          muted: AppColors.onSurfaceVariant,
+                        ),
+                        SizedBox(height: isMobile ? 24 : 32),
+                      ],
                     ),
-                    const SizedBox(height: 14),
-                    CourseGrid(
-                      isMobile: isMobile,
-                      textColor: text,
-                      muted: muted,
-                    ),
-                    const SizedBox(height: 42),
-                    SectionTitle(
-                      title: 'Pricing',
-                      actionLabel: '',
-                      textColor: text,
-                      actionColor: muted,
-                    ),
-                    const SizedBox(height: 14),
-                    PricingGrid(
-                      isMobile: isMobile,
-                      textColor: text,
-                      muted: muted,
-                    ),
-                    const SizedBox(height: 42),
-                    SectionTitle(
-                      title: 'Articles',
-                      actionLabel: 'View all',
-                      textColor: text,
-                      actionColor: muted,
-                    ),
-                    const SizedBox(height: 14),
-                    ArticleGrid(
-                      isMobile: isMobile,
-                      textColor: text,
-                      muted: muted,
-                    ),
-                    const SizedBox(height: 42),
-                    Footer(isMobile: isMobile, textColor: text, muted: muted),
-                  ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
