@@ -12,12 +12,18 @@ class Header extends StatelessWidget {
     super.key,
     required this.isMobile,
     required this.activeSection,
+    this.sections = const ['Home', 'Projects', 'Stack', 'About', 'Contact'],
     this.onSectionTap,
+    this.onHireTap,
+    this.hireLabel = 'Hire Me',
   });
 
   final bool isMobile;
   final String activeSection;
+  final List<String> sections;
   final void Function(String section)? onSectionTap;
+  final VoidCallback? onHireTap;
+  final String hireLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +42,7 @@ class Header extends StatelessWidget {
             ),
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'DevArchitect',
@@ -45,45 +52,51 @@ class Header extends StatelessWidget {
                   fontSize: isMobile ? 18 : 22,
                 ),
               ),
-              const Spacer(),
+
               if (!isMobile) ...[
-                NavbarItem(
-                  text: 'Home',
-                  textColor: AppColors.onSurfaceVariant,
-                  isActive: activeSection == 'Home',
-                  onTap: () => onSectionTap?.call('Home'),
+                Row(
+                  children: [
+                    for (final section in sections)
+                      NavbarItem(
+                        text: section,
+                        textColor: AppColors.onSurfaceVariant,
+                        isActive: activeSection == section,
+                        onTap: () => onSectionTap?.call(section),
+                      ),
+                  ],
                 ),
-                NavbarItem(
-                  text: 'Projects',
-                  textColor: AppColors.onSurfaceVariant,
-                  isActive: activeSection == 'Projects',
-                  onTap: () => onSectionTap?.call('Projects'),
-                ),
-                NavbarItem(
-                  text: 'Stack',
-                  isActive: activeSection == 'Stack',
-                  textColor: AppColors.onSurfaceVariant,
-                  onTap: () => onSectionTap?.call('Stack'),
-                ),
-                NavbarItem(
-                  text: 'About',
-                  isActive: activeSection == 'About',
-                  textColor: AppColors.onSurfaceVariant,
-                  onTap: () => onSectionTap?.call('About'),
-                ),
-                NavbarItem(
-                  text: 'Contact',
-                  isActive: activeSection == 'Contact',
-                  textColor: AppColors.onSurfaceVariant,
-                  onTap: () => onSectionTap?.call('Contact'),
-                ),
-                const SizedBox(width: 18),
-                GhostButton(label: 'Hire Me', isMobile: false),
+                if (onHireTap != null) ...[
+                  const SizedBox(width: 18),
+                  GhostButton(
+                    label: hireLabel,
+                    isMobile: isMobile,
+                    onTap: onHireTap,
+                  ),
+                ],
               ] else ...[
-                IconButton(
-                  onPressed: () {},
+                PopupMenuButton<String>(
                   icon: const Icon(Icons.menu),
-                  color: AppColors.onSurface,
+                  color: AppColors.surface,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  onSelected: (value) {
+                    if (value == hireLabel) {
+                      onHireTap?.call();
+                    } else {
+                      onSectionTap?.call(value);
+                    }
+                  },
+                  itemBuilder:
+                      (_) => [
+                        for (final section in sections)
+                          PopupMenuItem(value: section, child: Text(section)),
+                        if (onHireTap != null)
+                          PopupMenuItem(
+                            value: hireLabel,
+                            child: Text(hireLabel),
+                          ),
+                      ],
                 ),
               ],
             ],

@@ -1,27 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_portfolio/views/contact/views/contact_screen.dart';
 
-import 'views/about/views/about_screen.dart';
-import 'views/home/views/home_screen.dart';
-import 'views/projects/views/projects_screen.dart';
-import 'views/stack/views/stack_screen.dart';
+import 'routes/app_router.dart';
 
 class Root extends StatelessWidget {
   const Root({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Sacko A. B. Portfolio',
+    return MaterialApp.router(
+      title: 'Sackoba',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const HomeScreen(),
-        '/projects': (context) => const ProjectsScreen(),
-        '/stack': (context) => const StackScreen(),
-        '/about': (context) => const AboutScreen(),
-        '/contact': (context) => const ContactScreen(),
-      },
+      // theme: AppTheme.light,
+      //       // darkTheme: AppTheme.dark,
+      //       themeMode: ThemeMode.light,
+      routerConfig: appRouter,
     );
   }
 }

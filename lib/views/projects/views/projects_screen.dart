@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../widgets/footer.dart';
-import '../../../widgets/header.dart';
 import '../../../widgets/project_card.dart';
 
 class ProjectsScreen extends StatelessWidget {
@@ -86,42 +85,6 @@ class ProjectsScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Header(
-                          isMobile: isMobile,
-                          activeSection: 'Projects',
-                          onSectionTap: (section) {
-                            if (section == 'Home') {
-                              Future.microtask(
-                                () => Navigator.pushReplacementNamed(
-                                  context,
-                                  '/',
-                                ),
-                              );
-                            } else if (section == 'Stack') {
-                              Future.microtask(
-                                () => Navigator.pushReplacementNamed(
-                                  context,
-                                  '/stack',
-                                ),
-                              );
-                            } else if (section == 'About') {
-                              Future.microtask(
-                                () => Navigator.pushReplacementNamed(
-                                  context,
-                                  '/about',
-                                ),
-                              );
-                            }else if (section == 'Contact') {
-                              Future.microtask(
-                                () => Navigator.pushReplacementNamed(
-                                  context,
-                                  '/contact',
-                                ),
-                              );
-                            }
-                          },
-                        ),
-                        const SizedBox(height: 28),
                         _buildHeroSection(isMobile),
                         const SizedBox(height: 28),
                         _buildFilters(isMobile),

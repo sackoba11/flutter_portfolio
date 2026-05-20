@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../widgets/footer.dart';
-import '../../../widgets/header.dart';
 import '../../../widgets/hero_section.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -60,42 +59,6 @@ class HomeScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Header(
-                          isMobile: isMobile,
-                          activeSection: 'Home',
-                          onSectionTap: (section) {
-                            if (section == 'Projects') {
-                              Future.microtask(
-                                () => Navigator.pushReplacementNamed(
-                                  context,
-                                  '/projects',
-                                ),
-                              );
-                            } else if (section == 'Stack') {
-                              Future.microtask(
-                                () => Navigator.pushReplacementNamed(
-                                  context,
-                                  '/stack',
-                                ),
-                              );
-                            } else if (section == 'About') {
-                              Future.microtask(
-                                () => Navigator.pushReplacementNamed(
-                                  context,
-                                  '/about',
-                                ),
-                              );
-                            } else if (section == 'Contact') {
-                              Future.microtask(
-                                () => Navigator.pushReplacementNamed(
-                                  context,
-                                  '/contact',
-                                ),
-                              );
-                            }
-                          },
-                        ),
-                        const SizedBox(height: 28),
                         HeroSection(
                           isMobile: isMobile,
                           textColor: AppColors.onSurface,

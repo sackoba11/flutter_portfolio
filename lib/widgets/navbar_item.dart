@@ -20,25 +20,29 @@ class NavbarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final effectiveColor = isActive ? AppColors.primary : textColor;
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-        decoration:
-            isActive
-                ? const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(color: AppColors.primary, width: 2),
-                  ),
-                )
-                : null,
-        child: Text(
-          text,
-          style: GoogleFonts.montserrat(
-            color: effectiveColor,
-            fontWeight: isActive ? FontWeight.w700 : FontWeight.w500,
-            fontSize: 14,
-            letterSpacing: 0.02,
+    var onHoverColor = Colors.transparent;
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+          decoration:
+              isActive
+                  ? const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(color: AppColors.primary, width: 2),
+                    ),
+                  )
+                  : BoxDecoration(color: onHoverColor),
+          child: Text(
+            text,
+            style: GoogleFonts.montserrat(
+              color: effectiveColor,
+              fontWeight: isActive ? FontWeight.w700 : FontWeight.w500,
+              fontSize: 14,
+              letterSpacing: 0.02,
+            ),
           ),
         ),
       ),
