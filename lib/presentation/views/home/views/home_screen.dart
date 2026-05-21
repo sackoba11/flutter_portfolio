@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../widgets/footer.dart';
-import '../../../widgets/hero_section.dart';
+import '../widgets/hero_section.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
               width: 520,
               height: 520,
               decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(0.1),
+                color: AppColors.primary.withOpacity(0.05),
                 borderRadius: BorderRadius.circular(260),
               ),
             ),

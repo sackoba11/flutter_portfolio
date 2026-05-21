@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../views/home/views/home_screen.dart';
-import 'ghost_button.dart';
+import '../presentation/views/home/views/home_screen.dart';
+import '../presentation/widgets/ghost_button.dart';
 
 class ArticleCard extends StatelessWidget {
   const ArticleCard({
@@ -56,7 +56,7 @@ class ArticleCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 8),
-          GhostButton(label: 'Design', isMobile: isMobile),
+          GhostButton(label: 'Design'),
         ],
       ),
     );

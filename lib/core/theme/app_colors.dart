@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._();
 
+  static const transparent = Colors.transparent;
   static const background = Color(0xFF051424);
   static const surface = Color(0xFF051424);
   static const surfaceDim = Color(0xFF051424);

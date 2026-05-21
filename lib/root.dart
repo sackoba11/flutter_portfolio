@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'routes/app_router.dart';
 
@@ -7,13 +8,16 @@ class Root extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Sackoba',
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      // theme: AppTheme.light,
-      //       // darkTheme: AppTheme.dark,
-      //       themeMode: ThemeMode.light,
-      routerConfig: appRouter,
+      home: MaterialApp.router(
+        title: 'Sackoba',
+        debugShowCheckedModeBanner: false,
+        // theme: AppTheme.light,
+        //       // darkTheme: AppTheme.dark,
+        //       themeMode: ThemeMode.light,
+        routerConfig: appRouter,
+      ),
     );
   }
 }

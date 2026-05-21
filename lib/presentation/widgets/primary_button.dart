@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../core/theme/app_colors.dart';
+import '../../core/theme/app_colors.dart';
 
-class GhostButton extends StatelessWidget {
-  const GhostButton({
+class PrimaryButton extends StatelessWidget {
+  const PrimaryButton({
     super.key,
     required this.label,
     required this.isMobile,
@@ -16,7 +16,7 @@ class GhostButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(
@@ -24,16 +24,23 @@ class GhostButton extends StatelessWidget {
           vertical: isMobile ? 10 : 14,
         ),
         decoration: BoxDecoration(
-          color: AppColors.surfaceContainerLow.withOpacity(0.72),
+          color: AppColors.primary,
           borderRadius: BorderRadius.circular(999),
-          border: Border.all(color: AppColors.outlineVariant.withOpacity(0.35)),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.primary.withOpacity(0.18),
+              blurRadius: 18,
+              offset: const Offset(0, 8),
+            ),
+          ],
         ),
         child: Text(
           label,
           style: TextStyle(
-            color: AppColors.onSurfaceVariant,
-            fontWeight: FontWeight.w600,
+            color: AppColors.onPrimary,
+            fontWeight: FontWeight.w700,
             fontSize: isMobile ? 14 : 15,
+            letterSpacing: 0.2,
           ),
         ),
       ),

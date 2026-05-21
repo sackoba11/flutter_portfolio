@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../widgets/footer.dart';
 
 class AboutScreen extends StatelessWidget {
@@ -291,7 +291,7 @@ class AboutScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildStatsSection(bool isMobile) {
+  Widget buildStatsSection(bool isMobile) {
     final stats = [
       {'value': '8+', 'label': 'années d’expérience'},
       {'value': '30+', 'label': 'projets livrés'},

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../widgets/footer.dart';
-import '../../../widgets/project_card.dart';
+import '../../../../widgets/project_card.dart';
 
 class ProjectsScreen extends StatelessWidget {
   const ProjectsScreen({super.key});

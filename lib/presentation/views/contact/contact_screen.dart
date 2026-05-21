@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/theme/app_colors.dart';
-import '../../../widgets/footer.dart';
+import '../../widgets/footer.dart';
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});

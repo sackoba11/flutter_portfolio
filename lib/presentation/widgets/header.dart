@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../core/theme/app_colors.dart';
+import '../../core/theme/app_colors.dart';
 import 'ghost_button.dart';
 import 'navbar_item.dart';
 
@@ -27,14 +27,15 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.sizeOf(context);
     return ClipRect(
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
         child: Container(
           height: 80,
-          padding: EdgeInsets.symmetric(horizontal: isMobile ? 12 : 20),
+          padding: EdgeInsets.symmetric(horizontal: isMobile ? 16 : 35),
           decoration: BoxDecoration(
-            color: AppColors.surface.withOpacity(0.58),
+            color: AppColors.surface,
             border: Border(
               bottom: BorderSide(
                 color: AppColors.outlineVariant.withOpacity(0.12),
@@ -65,20 +66,45 @@ class Header extends StatelessWidget {
                       ),
                   ],
                 ),
-                if (onHireTap != null) ...[
-                  const SizedBox(width: 18),
-                  GhostButton(
-                    label: hireLabel,
-                    isMobile: isMobile,
-                    onTap: onHireTap,
-                  ),
-                ],
+                GhostButton(label: hireLabel, onTap: onHireTap),
               ] else ...[
                 PopupMenuButton<String>(
-                  icon: const Icon(Icons.menu),
+                  constraints: BoxConstraints(minWidth: size.width * 0.9),
+                  icon: const Icon(
+                    Icons.menu,
+                    color: AppColors.onSurfaceVariant,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                  tooltip: 'Menu',
+                  elevation: 4,
+                  popUpAnimationStyle: AnimationStyle(
+                    curve: Curves.easeInOut,
+                    duration: const Duration(milliseconds: 800),
+                  ),
                   color: AppColors.surface,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
+                  position: PopupMenuPosition.under,
+                  style: ButtonStyle(
+                    overlayColor: WidgetStatePropertyAll(
+                      AppColors.primary.withOpacity(0.1),
+                    ),
+                    padding: WidgetStatePropertyAll(
+                      EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    ),
+                    mouseCursor: WidgetStatePropertyAll(
+                      SystemMouseCursors.click,
+                    ),
+                    backgroundColor: WidgetStatePropertyAll(
+                      AppColors.transparent,
+                    ),
+                    shape: WidgetStatePropertyAll(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4),
+                        side: const BorderSide(
+                          color: AppColors.primary,
+                          width: 2,
+                        ),
+                      ),
+                    ),
                   ),
                   onSelected: (value) {
                     if (value == hireLabel) {
@@ -90,11 +116,27 @@ class Header extends StatelessWidget {
                   itemBuilder:
                       (_) => [
                         for (final section in sections)
-                          PopupMenuItem(value: section, child: Text(section)),
+                          PopupMenuItem(
+                            value: section,
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: NavbarItem(
+                                text: section,
+                                textColor: AppColors.onSurfaceVariant,
+                                isActive: activeSection == section,
+                              ),
+                            ),
+                          ),
                         if (onHireTap != null)
                           PopupMenuItem(
                             value: hireLabel,
-                            child: Text(hireLabel),
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: GhostButton(
+                                label: hireLabel,
+                                onTap: onHireTap,
+                              ),
+                            ),
                           ),
                       ],
                 ),

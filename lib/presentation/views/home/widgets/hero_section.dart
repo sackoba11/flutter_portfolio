@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../core/theme/app_colors.dart';
-import 'ghost_button.dart';
-import 'primary_button.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../widgets/primary_button.dart';
 
 class HeroSection extends StatelessWidget {
   const HeroSection({
@@ -51,7 +50,7 @@ class HeroSection extends StatelessWidget {
                           label: 'Voir mes projets',
                           isMobile: false,
                         ),
-                        const GhostButton(
+                        const PrimaryButton(
                           label: 'Me contacter',
                           isMobile: false,
                         ),

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 // import 'package:material_symbols_icons/symbols.dart';
@@ -36,24 +38,51 @@ class _MainShellState extends State<MainShell> {
     final activeSection = _navSections[widget.navigationShell.currentIndex];
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        shadowColor: Colors.transparent,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        toolbarHeight: 80,
-        titleSpacing: 0,
-        title: Header(
-          isMobile: isMobile,
-          activeSection: activeSection,
-          sections: _navSections,
-          onSectionTap: goToSection,
-          onHireTap: () {
-            print("vbevbe");
-          },
-        ),
+      extendBody: true,
+
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            floating: true,
+            snap: true,
+            stretch: true,
+            pinned: true,
+            backgroundColor: Colors.transparent,
+            shadowColor: Colors.transparent,
+            elevation: 0,
+            automaticallyImplyLeading: false,
+            toolbarHeight: 80,
+            titleSpacing: 0,
+            title: Header(
+              isMobile: isMobile,
+              activeSection: activeSection,
+              sections: _navSections,
+              onSectionTap: goToSection,
+              onHireTap: () {},
+            ),
+            flexibleSpace: FlexibleSpaceBar(
+              stretchModes: const [
+                StretchMode.blurBackground, // Floute l'arrière-plan au scroll
+                StretchMode.fadeTitle, // Fait disparaître/apparaître en douceur
+              ],
+              background: Container(
+                height: 80,
+                width: double.infinity,
+                color: Colors.black,
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
+                  child: Container(color: Colors.transparent),
+                ),
+              ),
+            ),
+          ),
+          SliverFillRemaining(
+            hasScrollBody: true, // true si le contenu de navigationShell défile
+            child: widget.navigationShell,
+          ),
+        ],
       ),
-      body: widget.navigationShell,
+      //  widget.navigationShell,
       bottomNavigationBar:
           isMobile
               ? NavigationBar(

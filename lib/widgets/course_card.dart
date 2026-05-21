@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../views/home/views/home_screen.dart';
-import 'primary_button.dart';
+import '../presentation/views/home/views/home_screen.dart';
+import '../presentation/widgets/primary_button.dart';
 
 class CourseCard extends StatelessWidget {
   const CourseCard({

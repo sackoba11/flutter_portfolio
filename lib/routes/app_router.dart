@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../views/about/views/about_screen.dart';
-import '../views/contact/views/contact_screen.dart';
-import '../views/home/views/home_screen.dart';
-import '../views/main_shell.dart';
-import '../views/projects/views/projects_screen.dart';
-import '../views/stack/views/stack_screen.dart';
+import '../presentation/views/about/views/about_screen.dart';
+import '../presentation/views/contact/contact_screen.dart';
+import '../presentation/views/home/views/home_screen.dart';
+import '../presentation/views/main_shell.dart';
+import '../presentation/views/projects/views/projects_screen.dart';
+import '../presentation/views/stack/views/stack_screen.dart';
 import 'app_routes.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
