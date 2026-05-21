@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 // import 'package:material_symbols_icons/symbols.dart';
 
-import '../widgets/header.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../widgets/header.dart';
+import 'widgets/navigation_item.dart';
 
 class MainShell extends StatefulWidget {
   final StatefulNavigationShell navigationShell;
@@ -82,12 +84,12 @@ class _MainShellState extends State<MainShell> {
           ),
         ],
       ),
-      //  widget.navigationShell,
       bottomNavigationBar:
           isMobile
               ? NavigationBar(
                 elevation: 5,
-                indicatorColor: Colors.transparent,
+                backgroundColor: AppColors.surface,
+                indicatorColor: AppColors.primary.withOpacity(0.1),
                 selectedIndex: widget.navigationShell.currentIndex,
                 onDestinationSelected: goTo,
                 labelTextStyle: WidgetStateTextStyle.resolveWith((
@@ -96,34 +98,28 @@ class _MainShellState extends State<MainShell> {
                   final TextStyle textStyle =
                       states.contains(WidgetState.selected)
                           ? const TextStyle(
-                            color: Colors.black,
+                            color: AppColors.primary,
                             fontWeight: FontWeight.bold,
                           )
                           : const TextStyle(
-                            color: Colors.black,
+                            color: AppColors.onSurfaceVariant,
                             fontWeight: FontWeight.w400,
                           );
                   return textStyle;
                 }),
                 destinations: [
-                  NavigationDestination(
-                    icon: const Icon(Icons.home_filled),
-                    label: 'Accueil',
-                  ),
-                  NavigationDestination(
-                    icon: const Icon(Icons.manage_accounts_rounded),
+                  NavigationItem(icon: Icons.home_rounded, label: 'Home'),
+                  NavigationItem(
+                    icon: Icons.folder_special_rounded,
                     label: 'Projects',
                   ),
-                  NavigationDestination(
-                    icon: const Icon(Icons.agriculture),
-                    label: 'Stack',
-                  ),
-                  NavigationDestination(
-                    icon: const Icon(Icons.person),
+                  NavigationItem(icon: Icons.layers_rounded, label: 'Stack'),
+                  NavigationItem(
                     label: 'About',
+                    icon: Icons.account_circle_rounded,
                   ),
-                  NavigationDestination(
-                    icon: const Icon(Icons.person),
+                  NavigationItem(
+                    icon: Icons.connect_without_contact_rounded,
                     label: 'Contact',
                   ),
                 ],
