@@ -40,15 +40,13 @@ class _MainShellState extends State<MainShell> {
     final activeSection = _navSections[widget.navigationShell.currentIndex];
 
     return Scaffold(
-      extendBody: true,
-      extendBodyBehindAppBar: true,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             floating: true,
             snap: true,
             stretch: true,
-            // pinned: true,
+            pinned: true,
             backgroundColor: Colors.transparent,
             shadowColor: Colors.transparent,
             elevation: 0,

@@ -6,7 +6,7 @@ import '../presentation/views/contact/contact_screen.dart';
 import '../presentation/views/home/screen/home_screen.dart';
 import '../presentation/views/main/screen/main_shell.dart';
 import '../presentation/views/projects/views/projects_screen.dart';
-import '../presentation/views/stack/views/stack_screen.dart';
+import '../presentation/views/stack/screen/stack_screen.dart';
 import 'app_routes.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
