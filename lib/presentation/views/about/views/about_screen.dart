@@ -78,12 +78,7 @@ class AboutScreen extends StatelessWidget {
                           const SizedBox(height: 28),
                           _buildStrengths(isMobile),
                           const SizedBox(height: 40),
-                          Footer(
-                            isMobile: isMobile,
-                            textColor: AppColors.onSurface,
-                            muted: AppColors.onSurfaceVariant,
-                          ),
-                          SizedBox(height: isMobile ? 24 : 32),
+                          Footer(),
                         ],
                       ),
                     ),

@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_colors.dart';
 import 'ghost_button.dart';
 import 'navbar_item.dart';
 
@@ -33,7 +33,7 @@ class Header extends StatelessWidget {
         filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
         child: Container(
           height: 80,
-          padding: EdgeInsets.symmetric(horizontal: isMobile ? 16 : 35),
+          padding: EdgeInsets.symmetric(horizontal: isMobile ? 16 : 45),
           decoration: BoxDecoration(
             color: AppColors.surface,
             border: Border(

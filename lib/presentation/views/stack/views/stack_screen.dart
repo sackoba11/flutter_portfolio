@@ -85,12 +85,7 @@ class StackScreen extends StatelessWidget {
                         const SizedBox(height: 28),
                         _buildSkillGrid(isMobile),
                         const SizedBox(height: 40),
-                        Footer(
-                          isMobile: isMobile,
-                          textColor: AppColors.onSurface,
-                          muted: AppColors.onSurfaceVariant,
-                        ),
-                        SizedBox(height: isMobile ? 24 : 32),
+                        Footer(),
                       ],
                     ),
                   ),

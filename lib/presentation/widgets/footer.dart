@@ -1,34 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../views/home/controller/home_controller.dart';
+import 'footer_link.dart';
 
-class Footer extends StatelessWidget {
-  const Footer({
-    super.key,
-    required this.isMobile,
-    required this.textColor,
-    required this.muted,
-  });
-
-  final bool isMobile;
-  final Color textColor;
-  final Color muted;
+class Footer extends GetView<HomeController> {
+  const Footer({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        horizontal: isMobile ? 12 : 24,
-        vertical: isMobile ? 20 : 28,
+        horizontal: controller.isMobile.value ? 12 : 45,
+        vertical: controller.isMobile.value ? 20 : 48,
       ),
       decoration: const BoxDecoration(color: AppColors.surfaceContainerLowest),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
                 child: Column(
@@ -44,7 +38,7 @@ class Footer extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      '© 2024 DevArchitect. Crafted with precision.',
+                      '© 2026 DevArchitect. Crafted with precision.',
                       style: GoogleFonts.inter(
                         color: AppColors.onSurfaceVariant,
                         fontSize: 14,
@@ -54,71 +48,57 @@ class Footer extends StatelessWidget {
                   ],
                 ),
               ),
-              if (!isMobile)
-                Row(
+              if (!controller.isMobile.value)
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _FooterLink(label: 'GitHub'),
-                    _FooterLink(label: 'LinkedIn'),
-                    _FooterLink(label: 'Twitter'),
+                    Text(
+                      'Connect with me:',
+                      style: GoogleFonts.inter(
+                        color: AppColors.onSurfaceVariant,
+                        fontSize: 14,
+                        height: 1.6,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      spacing: 30,
+                      children: [
+                        FooterLink(label: 'GitHub'),
+                        FooterLink(label: 'LinkedIn'),
+                        FooterLink(label: 'Twitter'),
+                      ],
+                    ),
                   ],
                 ),
             ],
           ),
-          const SizedBox(height: 24),
-          Wrap(
-            spacing: 20,
-            runSpacing: 10,
-            children: [
-              Text('GitHub', style: TextStyle(color: muted)),
-              Text('LinkedIn', style: TextStyle(color: muted)),
-              Text('Twitter', style: TextStyle(color: muted)),
-              Text('Contact', style: TextStyle(color: muted)),
-            ],
-          ),
-          const SizedBox(height: 20),
-          if (!isMobile)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          if (controller.isMobile.value)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 24),
                 Text(
-                  'Designed for modern portfolios',
-                  style: TextStyle(color: muted, fontSize: 12),
+                  'Connect with me:',
+                  style: GoogleFonts.inter(
+                    color: AppColors.onSurfaceVariant,
+                    fontSize: 14,
+                    height: 1.6,
+                  ),
                 ),
-                Text(
-                  'Terms & Conditions',
-                  style: TextStyle(color: muted, fontSize: 12),
+                const SizedBox(height: 12),
+                Row(
+                  spacing: 20,
+                  children: [
+                    FooterLink(label: 'GitHub'),
+                    FooterLink(label: 'LinkedIn'),
+                    FooterLink(label: 'Twitter'),
+                  ],
                 ),
               ],
-            )
-          else ...[
-            Text(
-              'Designed for modern portfolios',
-              style: TextStyle(color: muted, fontSize: 12),
             ),
-            const SizedBox(height: 8),
-            Text(
-              'Terms & Conditions',
-              style: TextStyle(color: muted, fontSize: 12),
-            ),
-          ],
         ],
-      ),
-    );
-  }
-}
-
-class _FooterLink extends StatelessWidget {
-  const _FooterLink({required this.label});
-
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 18),
-      child: Text(
-        label,
-        style: TextStyle(color: AppColors.onSurfaceVariant, fontSize: 14),
       ),
     );
   }

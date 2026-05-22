@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 
 import '../presentation/views/about/views/about_screen.dart';
 import '../presentation/views/contact/contact_screen.dart';
-import '../presentation/views/home/views/home_screen.dart';
-import '../presentation/views/main/main_shell.dart';
+import '../presentation/views/home/screen/home_screen.dart';
+import '../presentation/views/main/screen/main_shell.dart';
 import '../presentation/views/projects/views/projects_screen.dart';
 import '../presentation/views/stack/views/stack_screen.dart';
 import 'app_routes.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../presentation/views/home/views/home_screen.dart';
-import '../presentation/widgets/ghost_button.dart';
+import '../presentation/views/home/screen/home_screen.dart';
+import '../presentation/views/main/widgets/ghost_button.dart';
 
 class ArticleCard extends StatelessWidget {
   const ArticleCard({
@@ -20,7 +20,7 @@ class ArticleCard extends StatelessWidget {
     final dark = isMobile;
     return Container(
       decoration: BoxDecoration(
-        color: dark ? HomeScreen.kCardDark : const Color(0xFFF5F5F7),
+        // color: dark ? HomeScreen.kCardDark : const Color(0xFFF5F5F7),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: dark ? Colors.white10 : Colors.black12),
       ),

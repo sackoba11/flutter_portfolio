@@ -7,6 +7,6 @@ import 'presentation/views/home/controller/home_controller.dart';
 
 void main() {
   setPathUrlStrategy();
-  Get.lazyPut(() => HommeController());
+  Get.lazyPut(() => HomeController());
   runApp(const Root());
 }

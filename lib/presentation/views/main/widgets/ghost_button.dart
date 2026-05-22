@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/theme/app_colors.dart';
-import '../views/home/controller/home_controller.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../home/controller/home_controller.dart';
 
-class GhostButton extends GetView<HommeController> {
+class GhostButton extends GetView<HomeController> {
   const GhostButton({super.key, required this.label, this.onTap});
 
   final String label;

@@ -19,18 +19,21 @@ class HeroSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final visualSize = isMobile ? 320.0 : 500.0;
-    final leftPadding = isMobile ? 0.0 : 6.0;
+    final leftPadding = isMobile ? 0.0 : 45.0;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Flex(
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 16 : 45,
+        vertical: isMobile ? 24 : 48,
+      ),
+      child: SafeArea(
+        child: Flex(
           direction: isMobile ? Axis.vertical : Axis.horizontal,
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              flex: isMobile ? 0 : 6,
+              flex: isMobile ? 0 : 7,
               child: Padding(
                 padding: EdgeInsets.only(right: leftPadding),
                 child: Column(
@@ -70,7 +73,7 @@ class HeroSection extends StatelessWidget {
             ),
           ],
         ),
-      ],
+      ),
     );
   }
 

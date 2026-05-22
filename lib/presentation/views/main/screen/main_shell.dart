@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 // import 'package:material_symbols_icons/symbols.dart';
 
-import '../../../core/theme/app_colors.dart';
-import '../../widgets/header.dart';
-import 'widgets/navigation_item.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../widgets/header.dart';
+import '../widgets/navigation_item.dart';
 
 class MainShell extends StatefulWidget {
   final StatefulNavigationShell navigationShell;
@@ -41,14 +41,14 @@ class _MainShellState extends State<MainShell> {
 
     return Scaffold(
       extendBody: true,
-
+      extendBodyBehindAppBar: true,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             floating: true,
             snap: true,
             stretch: true,
-            pinned: true,
+            // pinned: true,
             backgroundColor: Colors.transparent,
             shadowColor: Colors.transparent,
             elevation: 0,
@@ -107,7 +107,7 @@ class _MainShellState extends State<MainShell> {
                           );
                   return textStyle;
                 }),
-                destinations: [
+                destinations: const [
                   NavigationItem(icon: Icons.home_rounded, label: 'Home'),
                   NavigationItem(
                     icon: Icons.folder_special_rounded,

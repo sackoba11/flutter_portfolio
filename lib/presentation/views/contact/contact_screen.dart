@@ -106,12 +106,7 @@ class _ContactScreenState extends State<ContactScreen> {
                         const SizedBox(height: 40),
                         _buildContactContent(isMobile),
                         const SizedBox(height: 40),
-                        Footer(
-                          isMobile: isMobile,
-                          textColor: AppColors.onSurface,
-                          muted: AppColors.onSurfaceVariant,
-                        ),
-                        SizedBox(height: isMobile ? 24 : 32),
+                        Footer(),
                       ],
                     ),
                   ),
